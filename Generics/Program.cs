@@ -34,14 +34,30 @@ namespace Generics
             List<Person> people = new List<Person>();
             List<LogEntry> logs = new List<LogEntry>();
 
-            //string PeopleFile = @"C:\Users\Amin0\OneDrive\İş masası\FileFor\People.csv";
+            string PeopleFile = @"C:\Users\Amin0\OneDrive\İş masası\FileFor\People.csv";
             string LogsFile = @"C:\Users\Amin0\OneDrive\İş masası\FileFor\logs.csv";
             //File.Create(PeopleFile).Close();
-            File.Create(LogsFile).Close();
+            //File.Create(LogsFile).Close();
+
             PopulateLists(people, logs);
 
             /* New way of doing things - generics */
+            GenericTextFileProcessor.SaveToTextFile<Person>(people, PeopleFile);
+            GenericTextFileProcessor.SaveToTextFile<LogEntry>(logs, LogsFile);
 
+            var newPeople = GenericTextFileProcessor.LoadFromTextFile<Person>(PeopleFile);
+
+            foreach (var p in newPeople)
+            {
+                Console.WriteLine($"{p.FirstName} {p.LastName} (IsAlive = {p.IsAlive})");
+            }
+
+            var newLogs = GenericTextFileProcessor.LoadFromTextFile<LogEntry>(LogsFile);
+
+            foreach (var p in logs)
+            {
+                Console.WriteLine($"{p.ErrorCode} {p.Messager} at {p.TimeOfEvent.ToShortDateString()}");
+            }
 
             /* Old way of doing things - non-generics */
 
@@ -57,12 +73,12 @@ namespace Generics
             //OriginalTextFileProcessor.SaveLogs(logs, LogsFile);
 
             //var newLogs = OriginalTextFileProcessor.LoadLogs(LogsFile);
-            
+
             //foreach(var p in logs)
             //{
             //    Console.WriteLine($"{p.ErrorCode} {p.Messager} at {p.TimeOfEvent.ToShortDateString()}");
             //}
-            
+
         }
 
         private static void PopulateLists(List<Person> people, List<LogEntry> logs)
