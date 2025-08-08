@@ -40,6 +40,11 @@ namespace Generics
             File.Create(LogsFile).Close();
             PopulateLists(people, logs);
 
+            /* New way of doing things - generics */
+
+
+            /* Old way of doing things - non-generics */
+
             //OriginalTextFileProcessor.SavePeople(people, PeopleFile);
 
             //var newPeople = OriginalTextFileProcessor.LoadPeople(PeopleFile);
@@ -49,14 +54,14 @@ namespace Generics
             //    Console.WriteLine($"{p.FirstName} {p.LastName} (IsAlive = {p.IsAlive})");
             //}
 
-            OriginalTextFileProcessor.SaveLogs(logs, LogsFile);
+            //OriginalTextFileProcessor.SaveLogs(logs, LogsFile);
 
-            var newLogs = OriginalTextFileProcessor.LoadLogs(LogsFile);
+            //var newLogs = OriginalTextFileProcessor.LoadLogs(LogsFile);
             
-            foreach(var p in logs)
-            {
-                Console.WriteLine($"{p.ErrorCode} {p.Messager} at {p.TimeOfEvent.ToShortDateString()}");
-            }
+            //foreach(var p in logs)
+            //{
+            //    Console.WriteLine($"{p.ErrorCode} {p.Messager} at {p.TimeOfEvent.ToShortDateString()}");
+            //}
             
         }
 
